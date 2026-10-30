@@ -1,0 +1,10 @@
+name: ci context practice
+on:
+  push:
+    branches:
+      - 2-gha
+jobs:
+  ci-context-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "triggered by ${{ github.event_name}} event on ${{ github.ref }} branch"

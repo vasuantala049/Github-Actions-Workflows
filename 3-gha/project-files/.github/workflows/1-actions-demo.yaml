@@ -1,0 +1,17 @@
+name: 1-flask-actions-CI-demo
+on: 
+    push:
+jobs:
+    flask-CI-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v6
+            - name: build docker image
+              run: docker build -t flask-app:v1.0.0 .
+            - name: run docker image
+              run: docker run -d -p 5000:5000 --name flask-app flask-app:v1.0.0
+            - name: test flask app
+              run: |
+                  sleep 5
+                  curl http://localhost:5000/health  

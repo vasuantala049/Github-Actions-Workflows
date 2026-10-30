@@ -1,0 +1,15 @@
+name: 3-runner info
+on:
+  push:
+    branches:
+      - 2-gha
+jobs:
+  runner-info-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: runner info
+        run: |
+            echo "runner is $RUNNER_NAME"
+            echo "runner OS is $RUNNER_OS"
+            echo "runner architecture is $RUNNER_ARCH"
+ 
