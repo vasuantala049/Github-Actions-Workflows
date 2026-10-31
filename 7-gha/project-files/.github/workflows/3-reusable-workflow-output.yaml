@@ -1,0 +1,22 @@
+name: 3-Resuable-Workflow-Output
+on:
+    workflow_call:
+        outputs:
+            endpoint_url:
+                description: "The endpoint URL of the deployed application."
+                value: ${{ jobs.deploy-job.outputs.endpoint_url }}
+jobs:
+    deploy-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Set Endpoint URL Output
+              id: deploy
+              run: |
+                echo "This is a demo of reusable workflow outputs."
+                echo "Setting output value..."
+                sleep 5
+                echo "endpoint_url=https://api.example.com/deployments/12345" >> $GITHUB_OUTPUT
+        outputs:
+            endpoint_url: ${{ steps.deploy.outputs.endpoint_url }}
+
+    

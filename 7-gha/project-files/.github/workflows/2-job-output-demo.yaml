@@ -1,0 +1,21 @@
+name: 02-Job-Output-Demo
+on:
+    workflow_dispatch:
+jobs:
+    deploy-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Job Output Demo
+              id: deploy
+              run: |
+                echo "This is a demo of job outputs."
+                sleep 5
+        outputs:
+            endpoint_url: "https://api.example.com/deployments/12345"
+    notifiaction-job:
+        runs-on: ubuntu-latest
+        needs: deploy-job
+        steps:
+            - name: Display Job Output
+              run: |  
+                echo "Application endpoint url is ${{ needs.deploy-job.outputs.endpoint_url }}"
