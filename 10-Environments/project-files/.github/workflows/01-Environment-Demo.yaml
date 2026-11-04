@@ -58,8 +58,8 @@ jobs:
         run: |
           docker run -d \
             -p 5000:5000 \
-            --name cwvj-flask-container \
-            ${{ vars.DOCKERHUB_USERNAME }}/cwvj-flask-app:${{ github.sha }}
+            --name gha-flask-container \
+            ${{ vars.DOCKERHUB_USERNAME }}/gha-flask-app:${{ github.sha }}
 
       - name: Smoke Test Application
         run: |
@@ -68,7 +68,7 @@ jobs:
           curl --fail http://127.0.0.1:5000/health
 
       - name: Display Container Logs
-        run: docker logs cwvj-flask-container
+        run: docker logs gha-flask-container
 
   deploy-prod-job:
     name: Deploy to Production
@@ -97,8 +97,8 @@ jobs:
         run: |
           docker run -d \
             -p 5000:5000 \
-            --name cwvj-flask-container \
-            ${{ vars.DOCKERHUB_USERNAME }}/cwvj-flask-app:${{ github.sha }}
+            --name gha-flask-container \
+            ${{ vars.DOCKERHUB_USERNAME }}/gha-flask-app:${{ github.sha }}
 
       - name: Smoke Test Application
         run: |
@@ -107,4 +107,4 @@ jobs:
           curl --fail http://127.0.0.1:5000/health
 
       - name: Display Container Logs
-        run: docker logs cwvj-flask-container
+        run: docker logs gha-flask-container
